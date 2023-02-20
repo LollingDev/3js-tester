@@ -1,6 +1,8 @@
+
 import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
 
 // Setup
 
@@ -50,7 +52,7 @@ function addStar(){
 Array(200).fill().forEach(addStar);
 
 //add background
-const spaceTexture = new THREE.TextureLoader().load('light-bg.jpg');
+const spaceTexture = new THREE.TextureLoader().load('dark-bg.jpg');
 scene.background = spaceTexture;
 
 
@@ -103,3 +105,21 @@ function animate() {
 }
 
 animate();
+
+var checkbox = document.querySelector("input[name=checkbox]");
+var element = document.body;
+
+checkbox.addEventListener('change', function() {
+  if (this.checked) {
+    console.log("Checkbox is checked..");
+    const spaceTexture = new THREE.TextureLoader().load('dark-bg.jpg');
+    scene.background = spaceTexture;
+    element.classList.toggle("dark-mode");
+  } else {
+    console.log("Checkbox is not checked..");
+    const spaceTexture = new THREE.TextureLoader().load('light-bg.jpg');
+    scene.background = spaceTexture;
+    element.classList.toggle("dark-mode");
+  }
+});
+
