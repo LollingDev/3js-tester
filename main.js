@@ -19,11 +19,7 @@ camera.position.setX(-3);
 
 renderer.render(scene, camera);
 
-//create torus
-const geometry = new THREE.TorusGeometry(10,3,16,100);
-const material = new THREE.MeshStandardMaterial({color:0X3e158a});
-const torus = new THREE.Mesh(geometry, material);
-scene.add(torus)
+
 
 //lighting
 const pointLight = new THREE.PointLight(0xFFFFFF);
@@ -54,19 +50,10 @@ function addStar(){
 Array(200).fill().forEach(addStar);
 
 //add background
-const spaceTexture = new THREE.TextureLoader().load('space.jpg');
+const spaceTexture = new THREE.TextureLoader().load('light-bg.jpg');
 scene.background = spaceTexture;
 
-//add avatar box
-const cloverTexture = new THREE.TextureLoader().load('clover.jpg');
 
-const clover = new THREE.Mesh(
-  new THREE.BoxGeometry(3,3,3),
-  new THREE.MeshBasicMaterial({map: cloverTexture})
-);
-clover.position.x = 2;
-clover.position.z = -5;
-scene.add(clover); 
 
 //add moon
 
@@ -94,8 +81,6 @@ function moveCamera() {
   moon.rotation.y += 0.075;
   moon.rotation.z += 0.05;
 
-  clover.rotation.y += 0.01;
-  clover.rotation.z += 0.01;
 
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;
@@ -109,10 +94,6 @@ moveCamera();
 
 function animate() {
   requestAnimationFrame(animate);
-
-  torus.rotation.x += 0.01;
-  torus.rotation.y += 0.005;
-  torus.rotation.z += 0.01;
 
   moon.rotation.x += 0.005;
 
